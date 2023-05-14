@@ -1,0 +1,50 @@
+var dataset = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "street": "Test",
+        "timestamp": "Sat May 13 17:34:25 2023",
+        "image": "<a href=/media/694709e177c3e78a6e3c7861a64c74d1b76f653721ad291b23152b7a.jpg target='_blank'>Image</a>"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.3306842,
+          46.5277912
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "street": "Test 2",
+        "timestamp": "Sat May 13 18:11:09 2023",
+        "image": "<a href=/media/1afdf061dcdc2a0b0c3828d13bdeece115f60447bfa5cb19b46c1019.jpg target='_blank'>Image</a>"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.33367252349855,
+          46.51551644716333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "street": "Somewhere inside gt",
+        "timestamp": "Sat May 13 20:12:10 2023",
+        "image": "<a href=/media/b4e94e6b844813b07c4426d517b8a5c2d84c9c3a067afcc4cdf0d6fb.jpg target='_blank'>Image</a>"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.27546322345735,
+          46.52028205217433
+        ]
+      }
+    }
+  ]
+}

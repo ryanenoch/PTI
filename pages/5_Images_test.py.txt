@@ -1,0 +1,43 @@
+import streamlit as stm
+import base64
+
+stm.title("Pothole Tracking Initiative")
+stm.header('Images test')
+
+
+
+stm.image(
+            "https://s3-us-west-2.amazonaws.com/uw-s3-cdn/wp-content/uploads/sites/6/2017/11/04133712/waterfall.jpg",
+            width=400, # Manually Adjust the width of the image as per requirement
+        )
+
+#stm.image("/IMGDIR/test.jpg",width=400)
+
+"""### image from local file"""
+file_ = open("IMGDIR/test.jpg", "rb")
+contents = file_.read()
+data_url = base64.b64encode(contents).decode("utf-8")
+file_.close()
+
+stm.markdown(
+    f'<img src="data:image/jpg;base64,{data_url}" alt="image" width="100%">',
+    unsafe_allow_html=True,
+)
+
+#1. Place image in a folder
+#2. convert image file to a base64 string using b64.encode
+#3. use .decode() to decode the base64 string
+
+"""### image from local file using stm.image()"""
+stm.image(f"data:image/jpg;base64,{data_url}",width=400)
+# basically stm.image(URL,width=400)
+
+#"data:image/jpg;base64,{data_url}"
+
+"""### image link"""
+stm.markdown(
+    f'<a href="data:image/jpg;base64,{data_url}" target="_parent">Local Image</a>',
+    unsafe_allow_html=True,
+)
+
+#<a href='IMGDIR/168316398109142017558804863337.jpg' target='_parent'>Image</a>
