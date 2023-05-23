@@ -10,10 +10,6 @@ from datetime import datetime
 import pytz
 from serve_image import serve_image
 
-#now = datetime.now(pytz.timezone('America/Toronto')).strftime("%a %Y-%m-%d %H:%M:%S")
-
-
-
 stm.title("Pothole Tracking Initiative")
 stm.header('Add potholes')
 stm.sidebar.success("You can add a pothole here")
@@ -65,17 +61,23 @@ if 'center' in st_data:
       if os.path.isdir(dir)==False:
         os.mkdir(dir)
       
+      img = Image.open(image_file)
+
+      #fixes image rotation as per exif tag
+      img = ImageOps.exif_transpose(img)
+
+      width, height = img.size 
+
+      #compress by thumbnail method
+      if width > height: #horizontal
+        img.thumbnail([sys.maxsize, 720], Resampling.LANCZOS)
+      elif width < height: #vertical
+        img.thumbnail([720, sys.maxsize], Resampling.LANCZOS)
+      
       #saves image file to directory
-      with open(os.path.join("IMG",image_file.name),"wb") as f: 
-        f.write(image_file.getbuffer())         
-      #stm.success("Saved File")
+      img.save(os.path.join("IMG", image_file.name), optimize=True,quality=80)
 
-    #calling fn to get url
-    #url = serve_image(f'./IMG/{image_file.name}', image_file.id)
-    #url = f"<a href={url} target='_blank'>Image</a>"
-
-    
-    
+        
     #add lat, lng, street, timestamp to CSV
     with open('potholes.csv', 'a', newline='') as csvfile:
       #fieldnames = ['lat','long','street','timestamp']
@@ -83,7 +85,7 @@ if 'center' in st_data:
 
       writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
       writer.writerow({'lat':lat, 'long':lng, 'street':street, 'timestamp':timestamp, 'dirpath':f'./IMG/{image_file.name}'})
-      ##writer.writerow({'lat':lat, 'long':lng, 'street':street, 'timestamp':timestamp, 'image':img_file_path})
+     
 
     
 
