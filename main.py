@@ -25,5 +25,6 @@ if os.path.isfile('potholes.csv')==False:
       fieldnames = ['lat','long','street','timestamp','dirpath','image']
       writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
       writer.writeheader()
+  print('CSV file created')    
 
  #st.markdown("", unsafe_allow_html=True) 
